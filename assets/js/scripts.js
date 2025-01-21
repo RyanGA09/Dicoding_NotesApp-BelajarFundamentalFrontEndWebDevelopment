@@ -1,8 +1,18 @@
-// Sample Data
-const sampleNotes = [
-  { id: 1, title: "First Note", body: "This is the first note." },
-  { id: 2, title: "Second Note", body: "This is the second note." },
-];
+let notesData = []; // Array untuk menyimpan data notes
+
+// Fetch data dari file JSON
+const fetchNotesData = async () => {
+  try {
+    const response = await fetch("notes.json");
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    notesData = await response.json();
+    renderNotes();
+  } catch (error) {
+    console.error("Failed to fetch notes data:", error);
+  }
+};
 
 // Custom Element: App Bar
 class AppBar extends HTMLElement {
@@ -16,11 +26,24 @@ customElements.define("app-bar", AppBar);
 class NoteItem extends HTMLElement {
   set noteData(data) {
     this.innerHTML = `
-            <div>
+            <div class="note-item">
                 <h3>${data.title}</h3>
                 <p>${data.body}</p>
+                <small>${new Date(data.createdAt).toLocaleString()}</small>
+                <button class="delete-btn" data-id="${data.id}">Delete</button>
             </div>
         `;
+    this.querySelector(".delete-btn").addEventListener("click", () =>
+      this.deleteNote(data.id)
+    );
+  }
+
+  deleteNote(id) {
+    const index = notesData.findIndex((note) => note.id === id);
+    if (index !== -1) {
+      notesData.splice(index, 1);
+      renderNotes();
+    }
   }
 }
 customElements.define("note-item", NoteItem);
@@ -44,8 +67,14 @@ class NoteForm extends HTMLElement {
     const body = document.querySelector("#note-body").value;
 
     if (title && body) {
-      const newNote = { id: Date.now(), title, body };
-      sampleNotes.push(newNote);
+      const newNote = {
+        id: `notes-${Date.now()}`,
+        title,
+        body,
+        createdAt: new Date().toISOString(),
+        archived: false,
+      };
+      notesData.push(newNote);
       renderNotes();
       event.target.reset();
     }
@@ -58,12 +87,12 @@ const renderNotes = () => {
   const notesContainer = document.querySelector(".notes-container");
   notesContainer.innerHTML = "";
 
-  sampleNotes.forEach((note) => {
+  notesData.forEach((note) => {
     const noteElement = document.createElement("note-item");
     noteElement.noteData = note;
     notesContainer.appendChild(noteElement);
   });
 };
 
-// Initial Render
-renderNotes();
+// Inisialisasi
+fetchNotesData();
