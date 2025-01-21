@@ -1,6 +1,6 @@
 // **js/scripts.js**
 // Import scripts dynamically
-const scripts = ["app-bar", "note-form", "note-item"];
+const scripts = ["app-bar", "note-form", "note-item", "app-footer"];
 const loadScripts = () => {
   scripts.forEach((script) => {
     const scriptElement = document.createElement("script");

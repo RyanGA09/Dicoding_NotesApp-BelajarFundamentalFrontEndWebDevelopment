@@ -1,3 +1,4 @@
+// **scripts/note-item.js**
 class NoteItem extends HTMLElement {
   set noteData(data) {
     this.innerHTML = `

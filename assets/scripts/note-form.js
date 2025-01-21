@@ -1,3 +1,4 @@
+// **scripts/note-form.js**
 class NoteForm extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
