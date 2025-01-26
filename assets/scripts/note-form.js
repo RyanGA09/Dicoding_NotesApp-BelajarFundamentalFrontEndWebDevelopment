@@ -19,11 +19,22 @@ class NoteForm extends HTMLElement {
     const body = document.querySelector("#note-body").value;
 
     if (form.classList.contains("editing")) {
-      // Prevent adding a new note when editing
-      return;
-    }
+      // Update existing note
+      const editingId = form.dataset.editingId;
+      const noteIndex = notesData.findIndex((note) => note.id === editingId);
 
-    if (title && body) {
+      if (noteIndex !== -1) {
+        notesData[noteIndex].title = title;
+        notesData[noteIndex].body = body;
+        renderNotes(); // Re-render after update
+      }
+
+      // Reset form
+      form.reset();
+      form.classList.remove("editing");
+      delete form.dataset.editingId;
+    } else {
+      // Add new note
       const newNote = {
         id: `notes-${Date.now()}`,
         title,
@@ -32,8 +43,9 @@ class NoteForm extends HTMLElement {
         archived: false,
       };
       notesData.push(newNote);
-      renderNotes();
-      event.target.reset();
+      renderNotes(); // Re-render after adding
+      saveNotesData(); // Save updated data to localStorage
+      form.reset();
     }
   };
 }

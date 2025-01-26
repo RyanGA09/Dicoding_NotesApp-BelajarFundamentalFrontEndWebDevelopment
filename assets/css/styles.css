@@ -51,7 +51,7 @@ main {
   flex-grow: 1;
 }
 
-.note-item button {
+.note-item .delete-btn {
   background-color: #ff5252;
   color: #fff;
   border: none;
@@ -61,8 +61,30 @@ main {
   align-self: flex-end;
 }
 
-.note-item button:hover {
+.note-item .delete-btn:hover {
   background-color: #ff1744;
+}
+
+/* Note actions container */
+.note-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+/* Edit button style */
+.note-item .edit-btn {
+  background-color: #03a9f4;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.note-item .edit-btn:hover {
+  background-color: #0288d1;
 }
 
 /* Form styles */

@@ -1,21 +1,26 @@
 // **scripts/note-item.js**
 class NoteItem extends HTMLElement {
   set noteData(data) {
+    this.data = data;
+    this.render();
+  }
+
+  render() {
     this.innerHTML = `
-            <div class="note-item">
-                <h3>${data.title}</h3>
-                <p>${data.body}</p>
-                <small>${new Date(data.createdAt).toLocaleString()}</small>
-                <button class="edit-btn" data-id="${data.id}">Edit</button>
-                <button class="delete-btn" data-id="${data.id}">Delete</button>
-            </div>
-        `;
+      <div class="note-item">
+          <h3>${this.data.title}</h3>
+          <p>${this.data.body}</p>
+          <small>${new Date(this.data.createdAt).toLocaleString()}</small>
+          <button class="edit-btn" data-id="${this.data.id}">Edit</button>
+          <button class="delete-btn" data-id="${this.data.id}">Delete</button>
+      </div>
+    `;
     this.querySelector(".delete-btn").addEventListener("click", () =>
-      this.deleteNote(data.id)
+      this.deleteNote(this.data.id)
     );
 
     this.querySelector(".edit-btn").addEventListener("click", () =>
-      this.editNote(data)
+      this.editNote(this.data)
     );
   }
 
@@ -24,6 +29,7 @@ class NoteItem extends HTMLElement {
     if (index !== -1) {
       notesData.splice(index, 1);
       renderNotes();
+      saveNotesData(); // Save updated data to localStorage
     }
   }
 
@@ -50,6 +56,7 @@ class NoteItem extends HTMLElement {
       if (index !== -1) {
         notesData[index] = data;
         renderNotes();
+        saveNotesData(); // Save updated data to localStorage
       }
 
       // Reset the form
