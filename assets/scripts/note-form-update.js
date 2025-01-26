@@ -1,16 +1,16 @@
 class NoteFormUpdate extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-                            <div id="edit-popup" class="popup">
-                                <div class="popup-content">
-                                    <h2>Edit Note</h2>
-                                    <input type="text" id="edit-title" placeholder="Title" required>
-                                    <textarea id="edit-body" placeholder="Edit your note..." required></textarea>
-                                    <button class="editing-btn" id="save-edit">Save</button>
-                                    <button id="cancel-edit">Cancel</button>
+                                <div id="edit-popup" class="popup">
+                                    <div class="popup-content">
+                                        <h2>Edit Note</h2>
+                                        <input type="text" id="edit-title" placeholder="Title" required>
+                                        <textarea id="edit-body" placeholder="Edit your note..." required></textarea>
+                                        <button class="editing-btn" id="save-edit">Save</button>
+                                        <button id="cancel-edit">Cancel</button>
+                                    </div>
                                 </div>
-                            </div>
-                        `;
+                            `;
 
         // Bind cancel and save actions to their respective buttons
         this.querySelector("#save-edit").addEventListener("click", this.updateNote);
@@ -53,8 +53,7 @@ class NoteFormUpdate extends HTMLElement {
         const modal = document.getElementById("edit-popup");
 
         if (modal) {
-        modal.style.display = "flex"; // Show the modal
-        console.log("Modal displayed.");
+        modal.classList.add("show"); // Tampilkan modal dengan menambahkan kelas 'show'
         } else {
         console.error("Modal element not found.");
         }
@@ -81,7 +80,10 @@ class NoteFormUpdate extends HTMLElement {
 
     // Close the modal
     closeModal = () => {
-        document.getElementById("edit-popup").style.display = "none"; // Hide the modal
+        const modal = document.getElementById("edit-popup");
+        if (modal) {
+          modal.classList.remove("show"); // Sembunyikan modal
+        }
     };
 }
 

@@ -51,6 +51,29 @@ main {
   flex-grow: 1;
 }
 
+/* Note actions container
+.note-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+} */
+
+/* Edit button style */
+.note-item .edit-btn {
+  background-color: #03a9f4;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.note-item .edit-btn:hover {
+  background-color: #0288d1;
+}
+
 .note-item .delete-btn {
   background-color: #ff5252;
   color: #fff;
@@ -65,30 +88,8 @@ main {
   background-color: #ff1744;
 }
 
-/* Note actions container */
-.note-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-}
-
-/* Edit button style */
-.note-item .edit-btn {
-  background-color: #03a9f4;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  align-self: flex-end;
-}
-
-.note-item .edit-btn:hover {
-  background-color: #0288d1;
-}
-
 .popup {
-  display: flex;
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -98,6 +99,10 @@ main {
   justify-content: center;
   align-items: center;
   z-index: 9999; /* Menambahkan z-index */
+}
+
+.popup.show {
+  display: flex; /* Modal akan ditampilkan ketika kelas .show ditambahkan */
 }
 
 .popup-content {
