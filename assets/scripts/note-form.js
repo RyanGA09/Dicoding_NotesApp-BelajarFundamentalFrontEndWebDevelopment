@@ -13,8 +13,15 @@ class NoteForm extends HTMLElement {
 
   addNote = (event) => {
     event.preventDefault();
+
+    const form = event.target;
     const title = document.querySelector("#note-title").value;
     const body = document.querySelector("#note-body").value;
+
+    if (form.classList.contains("editing")) {
+      // Prevent adding a new note when editing
+      return;
+    }
 
     if (title && body) {
       const newNote = {

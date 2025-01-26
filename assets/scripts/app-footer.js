@@ -1,3 +1,4 @@
+// **scripts/app-footer.js**
 class AppFooter extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
