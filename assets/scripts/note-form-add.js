@@ -1,5 +1,5 @@
-// **scripts/note-form.js**
-class NoteForm extends HTMLElement {
+// **scripts/note-form-add.js**
+class NoteFormAdd extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
             <form id="note-form">
@@ -27,6 +27,7 @@ class NoteForm extends HTMLElement {
         notesData[noteIndex].title = title;
         notesData[noteIndex].body = body;
         renderNotes(); // Re-render after update
+        saveNotesData(); // Save updated data to localStorage
       }
 
       // Reset form
@@ -50,4 +51,4 @@ class NoteForm extends HTMLElement {
   };
 }
 
-customElements.define("note-form", NoteForm);
+customElements.define("note-form-add", NoteFormAdd);

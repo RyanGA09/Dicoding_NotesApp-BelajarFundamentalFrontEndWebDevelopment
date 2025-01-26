@@ -18,7 +18,7 @@ In this submission, the NotesApp was developed with the following basic features
 
 - Create new notes.
 - View the list of existing notes.
-- Delete notes from the list.
+- Delete & edit notes from the list.
 - Notes data is fetched from a JSON file using the **fetch API**.
 - Utilizes **Custom Elements** to build reusable components.
 

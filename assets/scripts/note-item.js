@@ -33,39 +33,49 @@ class NoteItem extends HTMLElement {
     }
   }
 
+  // editNote(data) {
+  //   // Show the popup and populate it with current data
+  //   const popup = document.querySelector("#edit-popup");
+  //   const titleInput = document.querySelector("#edit-title");
+  //   const bodyTextarea = document.querySelector("#edit-body");
+
+  //   titleInput.value = data.title;
+  //   bodyTextarea.value = data.body;
+
+  //   popup.style.display = "flex"; // Show the popup
+
+  //   const saveButton = document.querySelector("#save-edit");
+  //   const cancelButton = document.querySelector("#cancel-edit");
+
+  //   // Handle save action
+  //   saveButton.onclick = () => {
+  //     data.title = titleInput.value;
+  //     data.body = bodyTextarea.value;
+
+  //     // Update the note in the notesData array
+  //     const index = notesData.findIndex((note) => note.id === data.id);
+  //     if (index !== -1) {
+  //       notesData[index] = data;
+  //       renderNotes();
+  //       saveNotesData(); // Save updated data to localStorage
+  //     }
+
+  //     // Close the popup
+  //     popup.style.display = "none";
+  //   };
+
+  //   // Handle cancel action
+  //   cancelButton.onclick = () => {
+  //     popup.style.display = "none"; // Close the popup without saving
+  //   };
+  // }
+
   editNote(data) {
-    // Populate the form fields with the note data
-    const titleInput = document.querySelector("#note-title");
-    const bodyTextarea = document.querySelector("#note-body");
-    const form = document.querySelector("#note-form");
-
-    titleInput.value = data.title;
-    bodyTextarea.value = data.body;
-
-    // Add a temporary "editing" class to the form
-    form.classList.add("editing");
-
-    // Save changes on form submission
-    const saveEdit = (event) => {
-      event.preventDefault();
-      data.title = titleInput.value;
-      data.body = bodyTextarea.value;
-
-      // Update notesData and rerender notes
-      const index = notesData.findIndex((note) => note.id === data.id);
-      if (index !== -1) {
-        notesData[index] = data;
-        renderNotes();
-        saveNotesData(); // Save updated data to localStorage
-      }
-
-      // Reset the form
-      form.reset();
-      form.classList.remove("editing");
-      form.removeEventListener("submit", saveEdit);
-    };
-
-    form.addEventListener("submit", saveEdit);
+    const noteFormUpdate = document.querySelector("note-form-update");
+    console.log("Attempting to open modal for note: ", data);
+    if (noteFormUpdate) {
+      noteFormUpdate.openModal(data); // Pass the note data to the edit form
+    }
   }
 }
 
