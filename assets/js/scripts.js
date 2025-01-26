@@ -1,20 +1,6 @@
 // **js/scripts.js**
 // Import scripts dynamically
 const scripts = ["app-bar", "note-form", "note-item", "app-footer"];
-// const loadScripts = () => {
-//   scripts.forEach((script) => {
-//     const scriptElement = document.createElement("script");
-//     scriptElement.src = `assets/scripts/${script}.js`;
-//     scriptElement.onload = () => {
-//       console.log(`${script} loaded successfully`);
-//       // After the script is loaded, you can call renderNotes() or other actions
-//       if (script === "note-form") {
-//         fetchNotesData();
-//       }
-//     };
-//     document.body.appendChild(scriptElement);
-//   });
-// };
 
 const loadScripts = () => {
   const scriptPromises = scripts.map((script) => {
@@ -34,9 +20,6 @@ const loadScripts = () => {
     fetchNotesData(); // Now that all scripts are loaded, fetch the notes data
   });
 };
-
-// Global variables
-// let notesData = [];
 
 // Fetch data dari file JSON
 const fetchNotesData = async () => {
@@ -77,14 +60,7 @@ const renderNotes = () => {
 
   notesData.forEach((note) => {
     const noteElement = document.createElement("note-item");
-    // const noteElement = document.createElement("div");
-    // noteElement.classList.add("note-item");
     noteElement.noteData = note;
-    // noteElement.innerHTML = `
-    //   <h3>${note.title}</h3>
-    //   <p>${note.body}</p>
-    //   <small>${new Date(note.createdAt).toLocaleString()}</small>
-    // `;
     notesContainer.appendChild(noteElement);
   });
 };
