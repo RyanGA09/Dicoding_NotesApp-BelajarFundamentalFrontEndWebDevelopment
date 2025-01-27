@@ -1,4 +1,4 @@
-# Dicoding NotesApp - (Dicoding Submission - Belajar Fundamental FrontEnd Web Development (Learn FrontEnd Web Development Fundamentals))
+# Dicoding Submission - NotesApp (Belajar Fundamental FrontEnd Web Development (Learn FrontEnd Web Development Fundamentals))
 
 ## Author
 
