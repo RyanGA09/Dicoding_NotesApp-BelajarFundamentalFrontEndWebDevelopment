@@ -1,10 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Notes App</title>
-    <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
     <!-- Custom Header -->
@@ -15,11 +14,14 @@
       <note-form-add></note-form-add>
 
       <!-- Container for notes -->
-      <div class="notes-container"></div>
+      <h2>📌 Catatan Terarsip</h2>
+      <div id="archived-notes" class="notes-container"></div>
+
+      <h2>📌 Catatan Tidak Terarsip</h2>
+      <div id="active-notes" class="notes-container"></div>
     </main>
 
     <!-- Footer -->
     <app-footer></app-footer>
   </body>
-  <script src="assets/js/scripts.js"></script>
 </html>
